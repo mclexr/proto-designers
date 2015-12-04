@@ -6,7 +6,8 @@ if(empty($_POST['nome'])  		||
    empty($_POST['pedido'])	||
    !filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
    {
-	echo "Faltou preencher algum campo... retorne à tela principal.";
+    header("location:../emailNaoEnviado.html");
+
 	return false;
    }
 
@@ -21,6 +22,6 @@ $email_body = "Você recebeu uma solicitação de orçamento de $name.\n\n"."Des
 $headers = "From: naoresponda@designers.com\n";
 $headers .= "Reply-To: $email_address";
 mail($to,$email_subject,$email_body,$headers);
- header("location:../emailEnviado.html");
+header("location:../emailEnviado.html");
 return true;
 ?>
